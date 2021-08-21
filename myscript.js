@@ -46,35 +46,50 @@ $(document).ready(function(){
         let reader= new FileReader()
         reader.readAsBinaryString(selectedFile)
         reader.onload= function(e){
-            // the files text will be printed here
-            // console.log(e.target.result)
-            let data=e.target.result;
-            let workbook=XLSX.read(data,{
-                type:"binary"
-            });
+                    // the files text will be printed here
+                    // console.log(e.target.result)
+                    let data=e.target.result;
+                    let workbook=XLSX.read(data,{
+                        type:"binary"
+                    });
 
             workbook.SheetNames.forEach(function(sheet,index){
                 if(index==1) return;
     
                 let XL_row_object=XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet])
                 console.log(XL_row_object)
-                // let json_object=JSON.stringify(XL_row_object,undefined,4)
-                // console.log(XL_row_object[0]);
-                // console.log(json_object.length);
-                // console.log(json_object[0]);
+               
 
-                let table=document.getElementById("urlTable");
+                let table= `<table class="table-striped border-success">
+                <thead>
+                    <tr>
+                    <th data-field="id">
+                        <span class="text-success">
+                        Campaign Name
+                        </span>
+                    </th>
+                    <th data-field="name">
+                        <span class="text-success">
+                        Campaign Links 
+                        </span>
+                    </th>
+                    </tr>
+                </thead>
+                `
+             table+="<tbody>";
+                    for(let i=10;i<=28;i++){
+                        table+=`<tr>
+                                    <td>${XL_row_object[i].__EMPTY}</td>
+                                    <td><a href="${XL_row_object[i]["Aster Online"]}">${XL_row_object[i]["Aster Online"]}<a></td>
+                                </tr>`
+                    }               
+                    table+=`</tbody>
+                            </table>`
+
+                    document.getElementById("linksTable").innerHTML=table;
                 
-                console.log(table)
-                table+="<tbody";
-                for(let i=10;i<=28;i++){
-                    table+=`<tr>
-                                <td>${XL_row_object[i].__EMPTY}</td>
-                                 <td>${XL_row_object[i]["Aster Online"]}</td>
-                            </tr>`
-                }               
-                table+="</tbody>"
             })
+            
 
             reader.onerror= function(event){
                 console.error("File could not be read!"+ event.target.error.code)

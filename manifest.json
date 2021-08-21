@@ -1,0 +1,19 @@
+{
+    "name": "aster-extension",
+    "version": "1.0",
+    "description": "This extension is used to add links on image!",
+    "manifest_version": 2,
+    "permissions": ["storage","tabs","notifications",
+      "http://*/",
+      "https://*/"],
+    "browser_action": {
+        "default_popup": "index.html"
+      },
+      "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["jquery-3.3.1.js","content.js"]
+        }
+      ],
+      "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js; object-src 'self'"
+  }

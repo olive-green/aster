@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <!-- Include Bootstrap for styling -->
+  <link rel="stylesheet"
+  href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Include the Bootstrap Table CSS
+for the table -->
+<link rel="stylesheet" 
+  href=
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <!-- <style>
+      body{
+        width: 80px;
+        text-align: center;
+      }
+      input {
+        height: 20px;
+        width: 50px;
+        outline: none;
+      }
+      label{
+        width:50px;
+        font-weight: bold;
+      }
+    </style> -->
+  </head>
+  <body>
+    
+   <form enctype="multipart/form-data" method="post" id="imgForm" name="upload-image">
+    <label>Upload the Image</label>
+    <input type="file" name="filename" id="inpFile"></input>
+    <button type="submit" id="test-btn">Upload</button>
+  </form> 
+
+    <label>Upload the File</label>
+    <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx"/>
+    <br><br><br>
+    <table class="table-striped border-success">
+      <thead>
+        <tr>
+          <th data-field="id">
+            <span class="text-success">
+              Campaign Name
+            </span>
+          </th>
+          <th data-field="name">
+            <span class="text-success">
+              Campaign Links 
+            </span>
+          </th>
+        </tr>
+      </thead>
+    </table>
+    </div>
+    <!-- <button type="submit" id="excel-btn">Upload a file</button> -->
+
+   </body>
+   <script src="./jquery-3.3.1.js"></script>
+   <script src=
+   "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+     </script>
+     <script src=
+   "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+     </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js" integrity="sha512-MRDODtdVPB+P6eG8RPTGDxaK55jJ8j+Iu2eJFUa+3lmeOLTrXfDbQ4ThAw7vx0iqYlAZodtE4ps23rd/NQHoXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <!-- Include the JavaScript file
+  for Bootstrap table -->
+  <script src=
+  "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
+    </script>
+   <script src="./myscript.js"></script>
+</html>

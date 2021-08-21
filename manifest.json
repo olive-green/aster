@@ -15,5 +15,5 @@
           "js": ["jquery-3.3.1.js","content.js"]
         }
       ],
-      "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js; object-src 'self'"
+      "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js ; object-src 'self'"
   }

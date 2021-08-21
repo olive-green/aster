@@ -53,24 +53,27 @@ $(document).ready(function(){
                 type:"binary"
             });
 
-            workbook.SheetNames.forEach(function(sheet){
+            workbook.SheetNames.forEach(function(sheet,index){
+                if(index==1) return;
+    
                 let XL_row_object=XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet])
-                let json_object=JSON.stringify(XL_row_object)
-                console.log(json_object);
+                console.log(XL_row_object)
+                // let json_object=JSON.stringify(XL_row_object,undefined,4)
+                // console.log(XL_row_object[0]);
+                // console.log(json_object.length);
+                // console.log(json_object[0]);
 
-                // let table=document.getElementById("urlTable");
-                 // Use the given data to create 
-                // the table and display it
-                $('table').bootstrapTable({
-                    data: json_object
-                });
+                let table=document.getElementById("urlTable");
                 
-                // console.log(table)
-                // for(let i=10;i<=28;i++){
-                    // <td>${json_object[i].__EMPTY}</td>
-                    // <td>${json_object[i]["Aster Online"]}</td>
-                   
-                
+                console.log(table)
+                table+="<tbody";
+                for(let i=10;i<=28;i++){
+                    table+=`<tr>
+                                <td>${XL_row_object[i].__EMPTY}</td>
+                                 <td>${XL_row_object[i]["Aster Online"]}</td>
+                            </tr>`
+                }               
+                table+="</tbody>"
             })
 
             reader.onerror= function(event){

@@ -7,7 +7,7 @@
       "http://*/",
       "https://*/"],
     "browser_action": {
-        "default_popup": "index.html"
+        "default_popup": "index.html" 
       },
       "content_scripts": [
         {

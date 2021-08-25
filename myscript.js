@@ -21,7 +21,8 @@ imgForm.addEventListener("submit", e =>{
         console.log(result)
        // Update the relevant fields with the new data.
         const sendingUrl = {
-          url:result.data.display_url
+          url:result.data.display_url,
+          type:"image"
         }
 
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -77,17 +78,36 @@ $(document).ready(function(){
                 </thead>
                 `
              table+="<tbody>";
-                    for(let i=10;i<=28;i++){
-                        table+=`<tr>
-                                    <td>${XL_row_object[i].__EMPTY}</td>
-                                    <td><a href="${XL_row_object[i]["Aster Online"]}">${XL_row_object[i]["Aster Online"]}<a></td>
-                                </tr>`
-                    }               
-                    table+=`</tbody>
-                            </table>`
+            for(let i=10;i<=28;i++){
+                table+=`<tr>
+                            <td>${XL_row_object[i].__EMPTY}</td>
+                            <td><a class="campaign-links" href="${XL_row_object[i]["Aster Online"]}">${XL_row_object[i]["Aster Online"]}<a></td>
+                        </tr>`
+            }               
+            table+=`</tbody>
+                    </table>`
 
-                    document.getElementById("linksTable").innerHTML=table;
-                
+            document.getElementById("linksTable").innerHTML=table;
+
+
+            //sending campaign links
+            
+            $('.campaign-links').click(function(){
+                // alert($(this).attr('href'));
+                // or alert($(this).hash();
+                const sendingCampaignLink = {
+                    url:$(this).attr('href'),
+                    type:"table"
+                }
+        
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                    chrome.tabs.executeScript(tabs[0].id, {
+                        file: "content.js"
+                    }, function(){
+                        chrome.tabs.sendMessage(tabs[0].id,sendingCampaignLink);
+                    });
+                });
+                });   
             })
             
 

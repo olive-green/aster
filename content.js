@@ -1,42 +1,40 @@
-
-// // Inform the background page that 
-// // this tab should have a page-action.
-// chrome.runtime.sendMessage({
-//   from: 'content',
-//   subject: 'showPageAction',
-//   // loadImageButton
-// });
-
-// // Listen for messages from the popup.
-// chrome.runtime.onMessage.addListener((msg, sender, response) => {
-//   // First, validate the message's structure.
-//   if ((msg.from === 'popup') && (msg.subject === 'DOMInfo')) {
-//     // Collect the necessary data. 
-//     // (For your specific requirements `document.querySelectorAll(...)`
-//     //  should be equivalent to jquery's `$(...)`.)
-//     console.log("hi from content.js")
-//     var domInfo = {
-//       loadImageButton:loadImageButton
-//     };
-
-//     // Directly respond to the sender (popup), 
-//     // through the specified callback.
-//     response(domInfo);
-//   }
-// });
-
-
-
 const gotUrl=(message,sender,sendResponse)=>{
-    console.log(message.url)
+    // console.log(message.url)
     // url=message.url
-    var loadImageButton= document.getElementsByClassName("step")[0].lastElementChild;
-    loadImageButton.click();
-    var modalInput= document.getElementById("image-mapper-url");
-    modalInput.value=message.url
-    let continueButton=document.getElementById("image-mapper-continue");    
-    continueButton.disabled=false
-    continueButton.click();
+    if(message.type=="image"){
+        var loadImageButton= document.getElementsByClassName("step")[0].lastElementChild;
+        loadImageButton.click();
+        var modalInput= document.getElementById("image-mapper-url");
+        modalInput.value=message.url
+        let continueButton=document.getElementById("image-mapper-continue");    
+        continueButton.disabled=false
+        continueButton.click();
+    }
+    else {
+        console.log(message.url);
+        
+        //getting image-mapper-table
+        const mapperTableInputs=document.getElementById("image-mapper-table").getElementsByTagName("input");
+
+        // console.log(mapperTableInputs)
+
+        for(var i = 0; i < mapperTableInputs.length; i++){
+            if(mapperTableInputs[i].type === "radio" & mapperTableInputs[i].checked===true){
+                // console.log(mapperTableInputs[i]);
+                console.log(mapperTableInputs[i].parentElement.parentElement.nextSibling.nextSibling.firstChild);
+                mapperTableInputs[i].parentElement.parentElement.nextSibling.nextSibling.firstChild.value=message.url;
+
+            }
+        }
+        
+    }
     
 }
 chrome.runtime.onMessage.addListener(gotUrl);
+
+
+// const gotCampaingUrl=(message,sender,sendResponse)=>{
+//     console.log(message);
+// }
+// chrome.runtime.onMessage.addListener(gotCampaingUrl);
+

@@ -2,44 +2,104 @@
 <html>
   <head>
      <!-- Include Bootstrap for styling -->
-  <link rel="stylesheet"
+  <!-- <link rel="stylesheet"
   href=
-"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 
 <!-- Include the Bootstrap Table CSS
 for the table -->
-<link rel="stylesheet" 
+<!-- <link rel="stylesheet" 
   href=
-"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
-    <!-- <style>
+"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
       body{
-        width: 80px;
+        width:367px;
+        padding: 0;
+        margin:0;
+      }
+      .main{
         text-align: center;
       }
-      input {
-        height: 20px;
-        width: 50px;
-        outline: none;
-      }
       label{
-        width:50px;
-        font-weight: bold;
+        font-size: 1.3rem;
       }
-    </style> -->
+      input{
+        margin-top: 10px;
+
+      }
+      .upload-btn{
+        background-color: white; 
+        color: black;
+        border: 2px solid #0000ff8a;
+        text-align: center;
+        font-size: 16px;
+        padding: 5px 20px;
+        transition: 0.4s;
+        cursor: pointer;
+      }
+      .upload-btn:hover{
+        background-color: #0000ff8a;
+        color: white;
+      }
+
+      #campaign-table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        
+      }
+     
+
+      #campaign-table td, #campaign-table th {
+        /* border: 1px solid #ddd; */
+        padding: 8px;
+      }
+
+      #campaign-table tr:nth-child(even){background-color: #f2f2f2;}
+
+      #campaign-table tr:hover {background-color: #ddd;}
+
+      #campaign-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+      }
+      .hide{
+        display: none;
+      }
+    </style>
   </head>
   <body>
     
-   <form enctype="multipart/form-data" method="post" id="imgForm" name="upload-image">
-    <label class="h3 text-dark">Upload the Image</label>
-    <input type="file" name="filename" id="inpFile"></input>
+   <div class="main">
+    <form enctype="multipart/form-data" method="post" id="imgForm" name="upload-image">
+      <label class="inpFile">Upload the Image</label>
+      <input type="file" name="filename" id="inpFile" accept="image/*"></input>
+      <br><br>
+      <button class="upload-btn" type="submit" id="upload-button">
+        <i class="loading-icon fa fa-spinner fa fa-spin hide"></i>
+        <span id="upload-text">Upload</span>
+      </button>
+    </form> 
     <br><br>
-    <button class="btn btn-success" type="submit" id="test-btn">Upload</button>
-  </form> 
-
-  <br><br>
-    <label class="h3 text-dark">Upload the File</label>
-    <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx"/>
-    <br><br><br>
+    <!-- <button id="clearStorage">Clear Storage</button> -->
+    <br><br>
+    <div class="downloadFileName">
+      <label for="fileName" >Enter file name to download!</label>
+      <input type="text" id="fileName" placeholder="Enter file name."/>
+      
+    </div>
+    <br><br>
+    
+      <label class="h3 text-dark">Upload the File</label>
+      <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx"/>
+      <br><br>
+      <!-- <button id="showTable">Upload file data</button> -->
+      <br><br><br>
+   </div>
     
     <div id="linksTable">
     </div>
@@ -48,5 +108,6 @@ for the table -->
    </body>
    <script src="./jquery-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js" integrity="sha512-MRDODtdVPB+P6eG8RPTGDxaK55jJ8j+Iu2eJFUa+3lmeOLTrXfDbQ4ThAw7vx0iqYlAZodtE4ps23rd/NQHoXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
    <script src="./myscript.js"></script>
 </html>
